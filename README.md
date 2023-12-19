@@ -7,7 +7,7 @@
 Chạy lệnh sau để setup môi trường web service:
 
 ```shell
-cd nevent-config
+cd nevent
 bash config.sh
 ```
 
@@ -16,6 +16,6 @@ bash config.sh
 Chạy lệnh sau:
 
 ```shell
-cd nevent-config
+cd nevent
 bash deploy.sh
 ```
