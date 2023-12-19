@@ -62,4 +62,4 @@ services:
       - ./nginx/certbot/var:/var/lib/letsencrypt
     depends_on:
       - nginx
-    command: certonly --webroot --webroot-path=/var/www/html --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d nevent.io.vn  -d www.nevent.io.vn -d admin.nevent.io.vn  -d www.admin.nevent.io.vn -d server.nevent.io.vn  -d www.server.nevent.io.vn -d jenkins.nevent.io.vn  -d www.jenkins.nevent.io.vn
+    command: certonly --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d nevent.io.vn  -d www.nevent.io.vn -d admin.nevent.io.vn  -d www.admin.nevent.io.vn -d server.nevent.io.vn  -d www.server.nevent.io.vn -d jenkins.nevent.io.vn  -d www.jenkins.nevent.io.vn
