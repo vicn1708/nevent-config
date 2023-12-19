@@ -75,7 +75,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --agree-tos --no-eff-email --email vicn1708@gmail.com --staging -d nevent.io.vn -d www.nevent.io.vn -d server.nevent.io.vn -d www.server.nevent.io.vn -d admin.nevent.io.vn -d www.admin.nevent.io.vn
+    command: certonly --webroot -w /var/www/certbot --agree-tos --no-eff-email --email vicn1708@gmail.com --staging -d nevent.io.vn -d www.nevent.io.vn
 # networks:
 #   jenkins:
 #     external: true
