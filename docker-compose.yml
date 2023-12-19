@@ -81,4 +81,4 @@ services:
 
 networks:
   jenkins:
-    extends: true
+    external: true
