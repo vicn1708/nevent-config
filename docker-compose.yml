@@ -56,8 +56,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      # - ./nginx/conf-ssl/:/etc/nginx/conf.d/:ro
+      # - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./nginx/conf-ssl/:/etc/nginx/conf.d/:ro
       - ./nginx/certbot/www/:/var/www/certbot/:ro
       - ./nginx/certbot/letsencrypt/:/etc/nginx/ssl/:ro
     depends_on:
