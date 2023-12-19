@@ -38,15 +38,15 @@ services:
   # networks:
   #   - jenkins
 
-  nevent-client:
-    image: vicn1708/nevent-client
-    build: .
-    container_name: nevent-client
-    restart: always
-    ports:
-      - "8080:8080"
-    # networks:
-    #   - jenkins
+  # nevent-client:
+  #   image: vicn1708/nevent-client
+  #   build: .
+  #   container_name: nevent-client
+  #   restart: always
+  #   ports:
+  #     - "8080:8080"
+  # networks:
+  #   - jenkins
 
   nginx:
     image: nginx:latest
@@ -60,9 +60,12 @@ services:
       - ./nginx/html:/usr/share/nginx/html
       - ./nginx/certs:/etc/nginx/certs
     depends_on:
-      - nevent-admin
-      - nevent-client
-      - nevent-server
+      - certbot
+
+    # depends_on:
+    #   - nevent-admin
+    #   - nevent-client
+    #   - nevent-server
     # networks:
     #   - jenkins
 
