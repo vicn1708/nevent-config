@@ -15,9 +15,9 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 sudo apt update
-sudo apt install -y snapd
+sudo apt install snapd
 
-sudo snap install -y --classic certbot
+sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot --nginx
  
