@@ -1,7 +1,15 @@
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
 
-nvm install 21
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
-nvm install node
+source ~/.bashrc
 
-node -v
+nvm list-remote
+
+nvm install v20
+
+nvm list
+
+nvm install lts/hydrogen
+
+nvm use v20
