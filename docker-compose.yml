@@ -58,8 +58,9 @@ services:
     volumes:
       - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ./nginx/certbot/www/:/var/www/certbot/:ro
-      - ./nginx/certbot/letsencrypt/:/etc/letsencrypt
+      - ./nginx/certbot/conf/:/etc/nginx/ssl/:ro
       - ./nginx/certbot/lib/letsencrypt:/var/lib/letsencrypt
+      # - ./nginx/certbot/conf/:/etc/letsencrypt
     depends_on:
       - nevent-admin
       - nevent-client
@@ -71,8 +72,8 @@ services:
     image: certbot/certbot
     container_name: certbot
     volumes:
-      - ./nginx/certbot/letsencrypt/:/etc/letsencrypt/:rw
       - ./nginx/certbot/www/:/var/www/certbot/:rw
+      - ./nginx/certbot/conf/:/etc/letsencrypt/:rw
       - ./nginx/certbot/lib/letsencrypt:/var/lib/letsencrypt
     depends_on:
       - nginx
