@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  nevent-server:
+    image: vicn1708/nevent-server
+    build: .
+    container_name: nevent-server
+    restart: always
+    ports:
+      - "5555:5555"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    volumes:
+      - ./mongodb-data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: neventAdmin
+      MONGO_INITDB_ROOT_PASSWORD: neventAdmin
+    command: [--auth]
+
+  nevent-admin:
+    image: vicn1708/nevent-admin
+    build: .
+    container_name: nevent-admin
+    restart: always
+    ports:
+      - "5000:5000"
+
+  nevent-client:
+    image: vicn1708/nevent-client
+    build: .
+    container_name: nevent-client
+    restart: always
+    ports:
+      - "8081:8080"
