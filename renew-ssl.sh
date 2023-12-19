@@ -1,4 +1,4 @@
-sudo docker cp ./nginx/conf-ssl nginx:/etc/nginx/conf.d
+sudo cp ./nginx/conf-ssl ./nginx/conf
 
 sudo docker exec nginx nginx -s reload
 
