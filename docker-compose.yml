@@ -56,9 +56,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/conf:/etc/nginx/conf.d
-      # - ./nginx/conf-ssl:/etc/nginx/conf.d
-      - ./certbot/www:/var/www/certbot
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      # - ./nginx/conf-ssl/:/etc/nginx/conf.d/:ro
+      - ./certbot/www/:/var/www/certbot/:ro
     depends_on:
       - nevent-admin
       - nevent-client
@@ -70,13 +70,11 @@ services:
     image: certbot/certbot
     container_name: certbot
     volumes:
-      - ./nginx/certbot/letsencrypt:/etc/letsencrypt
-      - ./nginx/certbot/data:/var/www/certbot
+      - ./nginx/certbot/letsencrypt/:/etc/letsencrypt/:rw
+      - ./nginx/certbot/data/:/var/www/certbot/:rw
     depends_on:
       - nginx
-    networks:
-      - jenkins
-    command: certonly --webroot --webroot-path /var/www/certbot --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d nevent.io.vn -d www.nevent.io.vn -d server.nevent.io.vn -d www.server.nevent.io.vn -d admin.nevent.io.vn -d www.admin.nevent.io.vn -d jenkins.nevent.io.vn -d www.jenkins.nevent.io.vn
+    command: certonly --webroot -w /var/www/certbot --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d nevent.io.vn -d www.nevent.io.vn -d server.nevent.io.vn -d www.server.nevent.io.vn -d admin.nevent.io.vn -d www.admin.nevent.io.vn -d jenkins.nevent.io.vn -d www.jenkins.nevent.io.vn
 
 networks:
   jenkins:
