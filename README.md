@@ -16,5 +16,6 @@ bash config.sh
 Chạy lệnh sau:
 
 ```shell
+cd nevent
 bash deploy.sh
 ```
