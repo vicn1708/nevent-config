@@ -13,6 +13,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: neventAdmin
       MONGO_INITDB_ROOT_PASSWORD: neventAdmin
     command: [--auth]
+    networks:
+      - jenkins
 
   nevent-server:
     image: vicn1708/nevent-server
@@ -23,6 +25,8 @@ services:
       - "5555:5555"
     depends_on:
       - mongodb
+    networks:
+      - jenkins
 
   nevent-admin:
     image: vicn1708/nevent-admin
@@ -31,6 +35,8 @@ services:
     restart: always
     ports:
       - "5000:5000"
+    networks:
+      - jenkins
 
   nevent-client:
     image: vicn1708/nevent-client
@@ -39,6 +45,8 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    networks:
+      - jenkins
 
   nginx:
     image: nginx:latest
@@ -51,6 +59,13 @@ services:
       - ./nginx/conf/:/etc/nginx/conf.d/:ro
       # - ./nginx/conf-ssl/:/etc/nginx/conf.d/:ro
       - ./nginx/certbot/www/:/var/www/certbot/:ro
+    depends_on:
+      - mongodb
+      - nevent-server
+      - nevent-admin
+      - nevent-client
+    networks:
+      - jenkins
 
   certbot:
     image: certbot/certbot
@@ -60,4 +75,10 @@ services:
       - ./nginx/certbot/conf/:/etc/letsencrypt/:rw
     depends_on:
       - nginx
+    networks:
+      - jenkins
     command: certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d nevent.io.vn  -d www.nevent.io.vn -d admin.nevent.io.vn  -d www.admin.nevent.io.vn -d server.nevent.io.vn  -d www.server.nevent.io.vn -d jenkins.nevent.io.vn  -d www.jenkins.nevent.io.vn
+
+networks:
+  jenkins:
+    extends: true
