@@ -51,20 +51,17 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx
-    restart: always
+    restart: unless-stopped
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      # - ./nginx/conf-ssl/:/etc/nginx/conf.d/:ro
-      - ./nginx/certbot/www/:/var/www/certbot/:ro
-      - ./nginx/certbot/conf/ssl/live:/etc/nginx/ssl/live
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./certbot/www:/var/www/certbot
     depends_on:
-      - mongodb
-      - nevent-server
       - nevent-admin
       - nevent-client
+      - nevent-server
     networks:
       - jenkins
 
@@ -72,13 +69,13 @@ services:
     image: certbot/certbot
     container_name: certbot
     volumes:
-      - ./nginx/certbot/www/:/var/www/certbot/:rw
-      - ./nginx/certbot/conf/:/etc/letsencrypt/:rw
+      - ./nginx/certbot/letsencrypt:/etc/letsencrypt
+      - ./nginx/certbot/data:/var/www/certbot
     depends_on:
-      - nginx
+      - webserver
     networks:
       - jenkins
-    command: certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d nevent.io.vn  -d www.nevent.io.vn -d admin.nevent.io.vn  -d www.admin.nevent.io.vn -d server.nevent.io.vn  -d www.server.nevent.io.vn -d jenkins.nevent.io.vn  -d www.jenkins.nevent.io.vn
+    command: certonly --webroot --webroot-path /var/www/certbot --email vicn1708@gmail.com -d nevent.io.vn -d www.nevent.io.vn -d server.nevent.io.vn -d www.server.nevent.io.vn -d admin.nevent.io.vn -d www.admin.nevent.io.vn -d jenkins.nevent.io.vn -d www.jenkins.nevent.io.vn
 
 networks:
   jenkins:
