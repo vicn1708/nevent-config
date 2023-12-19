@@ -1,5 +1,5 @@
-docker compose down nginx
+sudo docker compose down nginx
 
-docker compose up -d nginx
+sudo docker compose up -d nginx
 
-docker compose run --rm certbot renew
+sudo docker compose run --rm certbot renew
