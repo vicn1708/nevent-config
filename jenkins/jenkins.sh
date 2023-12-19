@@ -14,7 +14,7 @@ sudo docker run \
   docker:dind \
   --storage-driver overlay2
 
-sudo docker build -t myjenkins-blueocean:2.426.2-1 .
+sudo docker build -t myjenkins-blueocean:2.426.2-1 ./jenkins
 
 sudo docker run \
   --name jenkins-blueocean \
