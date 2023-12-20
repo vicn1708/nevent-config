@@ -17,7 +17,7 @@ services:
     container_name: mongodb
     restart: always
     volumes:
-      - ./mongodb-data:/data/db
+      - ../backup-data/mongodb-data:/data/db
     ports:
       - "27017:27017"
     environment:
