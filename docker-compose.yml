@@ -78,4 +78,4 @@ services:
 
 networks:
   nevent-network:
-    externals: true
+    external: true
