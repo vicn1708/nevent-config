@@ -26,7 +26,7 @@ echo "Stop NGINX"
 sudo docker compose stop webserver
 
 echo "Config openSSL"
-sudo openssl dhparam -out /home/nevent/nevent-config/nginx/dhparam/dhparam-2048.pem 2048
+sudo openssl dhparam -out ./nginx/dhparam/dhparam-2048.pem 2048
 
 sudo cp -r ./nginx/conf-ssl/* ./nginx/conf
 
