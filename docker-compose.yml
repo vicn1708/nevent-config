@@ -71,6 +71,7 @@ services:
       - nevent-client
       - nevent-admin
       - nevent-server
+      - nevent-bot
     networks:
       - nevent-network
 
