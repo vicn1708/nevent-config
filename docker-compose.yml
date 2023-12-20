@@ -3,13 +3,14 @@ version: "3.8"
 services:
   nevent-server:
     image: vicn1708/nevent-server
-    build: .
     container_name: nevent-server
     restart: always
     ports:
       - "5555:5555"
     depends_on:
       - mongodb
+    networks:
+      - nevent-network
 
   mongodb:
     image: mongo
@@ -23,19 +24,56 @@ services:
       MONGO_INITDB_ROOT_USERNAME: neventAdmin
       MONGO_INITDB_ROOT_PASSWORD: neventAdmin
     command: [--auth]
+  networks:
+    - nevent-network
 
   nevent-admin:
     image: vicn1708/nevent-admin
-    build: .
     container_name: nevent-admin
     restart: always
     ports:
       - "5000:5000"
+    networks:
+      - nevent-network
 
   nevent-client:
     image: vicn1708/nevent-client
-    build: .
     container_name: nevent-client
     restart: always
     ports:
-      - "8081:8080"
+      - "8080:8080"
+    networks:
+      - nevent-network
+
+  webserver:
+    image: nginx:latest
+    container_name: webserver
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/certbot/letsencrypt:/etc/letsencrypt
+      - ./nginx/cerbot/lib/letsencrypt:/var/lib/letsencrypt
+      - ./nginx/certbot/www:/var/www/certbot
+      - ./nginx/dhparam:/etc/ssl/certs
+    depends_on:
+      - nevent-client
+      - nevent-admin
+      - nevent-server
+    networks:
+      - nevent-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./nginx/cerbot/letsencrypt:/etc/letsencrypt
+      - ./nginx/cerbot/lib/letsencrypt:/var/lib/letsencrypt
+    depends_on:
+      - webserver
+
+networks:
+  nevent-network:
+    driver: bridge
