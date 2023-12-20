@@ -73,7 +73,9 @@ services:
       - ./nginx/cerbot/lib/letsencrypt:/var/lib/letsencrypt
     depends_on:
       - webserver
+    networks:
+      - nevent-network
 
 networks:
   nevent-network:
-    driver: bridge
+    externals: true
