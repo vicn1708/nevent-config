@@ -2,7 +2,14 @@
 
 # Xây dựng môi trường cho VPS
 
-## 1. Đối với VPS mới khởi tạo
+## 1. Thêm user vào sudo group
+
+```shell
+su - ${user}
+group
+```
+
+## 2. Đối với VPS mới khởi tạo
 
 Chạy lệnh sau để setup môi trường web service:
 
@@ -10,7 +17,7 @@ Chạy lệnh sau để setup môi trường web service:
 bash config.sh
 ```
 
-## 2. Đối với VPS đã thuê và đã chạy lệnh `bash config.sh` muốn chạy pipeline CI - CD
+## 3. Đối với VPS đã thuê và đã chạy lệnh `bash config.sh` muốn chạy pipeline CI - CD
 
 Chạy lệnh sau:
 
