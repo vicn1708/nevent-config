@@ -10,7 +10,7 @@ services:
     depends_on:
       - mongodb
     networks:
-      - nevent_network
+      - nevent-network
 
   mongodb:
     image: mongo
@@ -24,8 +24,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: neventAdmin
       MONGO_INITDB_ROOT_PASSWORD: neventAdmin
     command: [--auth]
-  networks:
-    - nevent_network
+    networks:
+      - nevent-network
 
   nevent-admin:
     image: vicn1708/nevent-admin
@@ -34,7 +34,7 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - nevent_network
+      - nevent-network
 
   nevent-client:
     image: vicn1708/nevent-client
@@ -43,7 +43,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - nevent_network
+      - nevent-network
 
   webserver:
     image: nginx:latest
@@ -64,7 +64,7 @@ services:
       - nevent-server
       - certbot
     networks:
-      - nevent_network
+      - nevent-network
 
   certbot:
     image: certbot/certbot
@@ -75,9 +75,9 @@ services:
     depends_on:
       - webserver
     networks:
-      - nevent_network
+      - nevent-network
     # command: certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d nevent.io.vn -d www.nevent.io.vn -d admin.nevent.io.vn -d www.admin.nevent.io.vn -d server.nevent.io.vn -d www.server.nevent.io.vn
 
 networks:
-  nevent_network:
+  nevent-network:
     driver: bridge
