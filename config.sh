@@ -2,7 +2,7 @@ echo "Install Docker..."
 bash docker/install.sh
 
 echo "Create docker network..."
-sudo docker create network nevent-network
+sudo docker network create nevent-network
 
 echo "SSL nevent.io.vn"
 sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d nevent.io.vn -d www.nevent.io.vn
