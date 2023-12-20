@@ -62,7 +62,6 @@ services:
       - nevent-client
       - nevent-admin
       - nevent-server
-      - certbot
     networks:
       - nevent-network
 
