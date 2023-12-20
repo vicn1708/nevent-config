@@ -6,3 +6,4 @@ sudo docker compose up -d nevent-client
 sudo docker compose up -d nevent-admin
 sudo docker compose up -d nevent-server
 
+sudo docker image prune -f
