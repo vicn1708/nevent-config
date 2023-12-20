@@ -13,6 +13,9 @@ sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www
 echo "SSL server.nevent.io.vn"
 sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d server.nevent.io.vn -d www.server.nevent.io.vn
 
+echo "SSL server.nevent.io.vn"
+sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d bot.nevent.io.vn -d www.bot.nevent.io.vn
+
 # echo "SSL jenkins.nevent.io.vn"
 # sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --staging -d jenkins.nevent.io.vn -d www.jenkins.nevent.io.vn
 
@@ -35,6 +38,9 @@ sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www
 
 echo "Renew SSL server.nevent.io.vn"
 sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --force-renewal -d server.nevent.io.vn -d www.server.nevent.io.vn
+
+echo "Renew SSL server.nevent.io.vn"
+sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --force-renewal -d bot.nevent.io.vn -d www.bot.nevent.io.vn
 
 # echo "Renew SSL jenkins.nevent.io.vn"
 # sudo docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --email vicn1708@gmail.com --agree-tos --no-eff-email --force-renewal -d jenkins.nevent.io.vn -d www.jenkins.nevent.io.vn

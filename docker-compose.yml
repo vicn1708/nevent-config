@@ -1,6 +1,15 @@
 version: "3.8"
 
 services:
+  nevent-bot:
+    image: vicn1708/nevent-bot
+    container_name: nevent-bot
+    restart: always
+    ports:
+      - "3333:3333"
+    networks:
+      - nevent-network
+
   nevent-server:
     image: vicn1708/nevent-server
     container_name: nevent-server
